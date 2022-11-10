@@ -1,7 +1,0 @@
-
-
-
-
-分析下MUDUO的ThreadPool与生产者消费者模型的ThreadPool
-
-Muduo的ThreadPool并不是生产者消费者模型，而是拿一个直接生成一个thread，并且每一个thread有自己的loop。在队列中每来一个newConncetion，选择一个ioLoop(此时有多个ioLoop也就是有多个io线程),如果此时选择的ioLoop属于CurrentThread则直接RunInLoop ,如果此时选择ioLoop不属于CurrentThread，那么CurrentThread wakup() ioLoopbelonged Thread.
